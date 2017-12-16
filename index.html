@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>CMSC320_Final</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>CMSC320_Final (1)</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11799,9 +11799,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this project, we will be looking into different factors that can affect a college student's self-perception of weight. Self-perception of weight has notably been studied by the NIH (<a href="https://www.ncbi.nlm.nih.gov/pubmed/20142281">https://www.ncbi.nlm.nih.gov/pubmed/20142281</a> about adolescents, <a href="https://www.ncbi.nlm.nih.gov/pubmed/12726871">https://www.ncbi.nlm.nih.gov/pubmed/12726871</a> uses logistic regression!!!, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/</a> for women). This would be very useful for counseling purposes to understand patient perspectives and to help with respect to weight management.</p>
-<p>Evidence consistently indicates that unhealthy body image is associated with obesity and physical inactivity and plays a pivotal role in the development of eating disorders during adolescence." Studies such as <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4554432/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4554432/</a> can inform you more on this. Our project deals with prediction of what people think of their body image, which may be able to alert/indicate someone at risk, so they can get help?</p>
-<p>We will be working with a dataset containing survey results of college students. One particular question we will be interested in is "self_perception_weight" in which the respondent ranked perceive themselves (1 - slim, 2 - very fit, 3 - just right, 4 - slightly overweight, 5 - overweight, 6 - I dont think of myself in these terms), and we will see if we can classify this based on the remainder of their responses.</p>
+<p>In this project, we will be looking into different factors that can affect a college student's self-perception of weight. Self-perception of weight has notably been studied by the NIH, such as with <a href="https://www.ncbi.nlm.nih.gov/pubmed/20142281">adolescents</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/ for women">young women</a>, and consideration of <a href="https://www.ncbi.nlm.nih.gov/pubmed/12726871">sociodemographic factors</a> (this study uses logistic regression - which we will also be discussing later)! Learning about this information is useful for counseling purposes to understand patient perspectives of weight and to help with respect to weight management.</p>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4554432/">Studies</a> have indicated that "unhealthy body image is associated with obesity and physical inactivity and plays a pivotal role in the development of eating disorders during adolescence." Our project focuses on predicting people's self-perception of their weight. This sort of analysis may have important impact for counseling personnel - its predictions may suggest if a college student is likely to have unhealthy body image and hopefully allow for earlier intervention.</p>
+<p>We will be working with a dataset containing survey results of college students. One particular survey question we are interested in is "self_perception_weight" in which the respondent ranked how they perceive themselves (1 - slim, 2 - very fit, 3 - just right, 4 - slightly overweight, 5 - overweight, 6 - I dont think of myself in these terms), and we will see if we can classify this based on the remainder of their responses.</p>
 
 </div>
 </div>
@@ -11818,9 +11818,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this tutorial, we will get hands-on with survey data of college students! By the end, you will have learned:</p>
+<p>In this tutorial, we will get hands-on with the survey data of college students! By the end, you will have learned:</p>
 <ol>
-<li>How to get the food choices data from the CSV file into a dataframe format (so that Python can read it)</li>
+<li>How to get the food and health data from the CSV file into a dataframe format (so that Python can read it)</li>
 <li>How to process the data, removing any unnecessary information and replacing any missing or meaningless data</li>
 <li>How to proceed with exploratory data analaysis, creating plots to help with visualization and developing hypotheses </li>
 <li>How to create classifiers and test hypotheses with machine learning</li>
@@ -11855,7 +11855,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[249]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># In order to import these libraries: </span>
@@ -11892,17 +11892,18 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have the libraries installed, we will load our data into a DataFrame with Pandas' read_csv method. This takes a comma separated value document and converts it into a DataFrame, convenient for data management and analysis.</p>
+<p>Now that we have the libraries installed, we will load our data into a DataFrame with Pandas' read_csv method. This takes a comma separated value document and converts it into a DataFrame, convenient for data management and analysis. For what the data means, the codebook_food.docx file from the download link goes in depth.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[250]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;food_coded.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load the file</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;food_coded.csv&quot;</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -11916,7 +11917,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[250]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -12096,17 +12097,18 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following command drops the column named 'GPA'. We pass in 'GPA' as the first term and specify if we want to drop rows (axis=0) or columns (axis=1) in the second term. See <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html">here</a> for more information!</p>
+<h4 id="Handling-Unnecessary-Data">Handling Unnecessary Data<a class="anchor-link" href="#Handling-Unnecessary-Data">&#182;</a></h4><p>The following command drops the column named 'GPA'. We pass in 'GPA' as the first term and specify if we want to drop rows (axis=0) or columns (axis=1) in the second term. See <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html">here</a> for more information!</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[251]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;GPA&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this drops the GPA column</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;GPA&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -12120,7 +12122,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[251]:</div>
+<div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -12297,10 +12299,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[252]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;breakfast&#39;</span><span class="p">,</span><span class="s1">&#39;calories_chicken&#39;</span><span class="p">,</span><span class="s1">&#39;calories_scone&#39;</span><span class="p">,</span><span class="s1">&#39;coffee&#39;</span><span class="p">,</span> <span class="s1">&#39;comfort_food&#39;</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this drops all the columns we will be excluding in this tutorial</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;breakfast&#39;</span><span class="p">,</span><span class="s1">&#39;calories_chicken&#39;</span><span class="p">,</span><span class="s1">&#39;calories_scone&#39;</span><span class="p">,</span><span class="s1">&#39;coffee&#39;</span><span class="p">,</span> <span class="s1">&#39;comfort_food&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;comfort_food_reasons&#39;</span><span class="p">,</span> <span class="s1">&#39;comfort_food_reasons_coded.1&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;cuisine&#39;</span><span class="p">,</span> <span class="s1">&#39;diet_current&#39;</span><span class="p">,</span><span class="s1">&#39;drink&#39;</span><span class="p">,</span><span class="s1">&#39;eating_changes&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;employment&#39;</span><span class="p">,</span> <span class="s1">&#39;ethnic_food&#39;</span><span class="p">,</span><span class="s1">&#39;father_education&#39;</span><span class="p">,</span>
@@ -12324,7 +12327,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[252]:</div>
+<div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -12494,19 +12497,22 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have the columns we want, we may wish to reorder our columns in a way that makes more sense, such as putting variables of more significance first. As we are interested in self perception of weight and will likely look at actual weight later on, we will move the 'self_perception_weight' and 'weight' columns to the front. DataFrames have a reindex method, which takes a list of reordered column names and reorders the DataFrame accordingly. Below, we take the current list of columns, move the column weight to the front, move the column self_perception_weight in front of that, and then run the reindex command so we end up with our new order.</p>
+<h4 id="Reformatting-DataFrame">Reformatting DataFrame<a class="anchor-link" href="#Reformatting-DataFrame">&#182;</a></h4><p>Now that we have the columns we want, we may wish to reorder our columns in a way that makes more sense, such as putting variables of more significance first. As we are interested in self perception of weight and will likely look at actual weight later on, we will move the 'self_perception_weight' and 'weight' columns to the front. DataFrames have a reindex method, which takes a list of reordered column names and reorders the DataFrame accordingly. Below, we take the current list of columns, move the column weight to the front, move the column self_perception_weight in front of that, and then run the reindex command so we end up with our newly ordered DataFrame.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get the columns as a list</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="c1"># move the desired columns to the front</span>
 <span class="n">cols</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cols</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)))</span>
 <span class="n">cols</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cols</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">cols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">)))</span>
+<span class="c1"># reorder!</span>
 <span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -12521,7 +12527,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[253]:</div>
+<div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -12692,21 +12698,19 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Yikes! There are some non-numeric answers in this table where there should be numbers (e.g. the weight column), since certain parts of the survey were left as free response. Note entries in the weight column of index 2 ('I'm not answering this.') and index 3 ('Not sure, 240').</p>
-<p>How do we handle such cases? This is an example of 'Missing Not at Random' (MNAR) data, in which the data itself has something to do with why it's missing. (You can learn more about missing data <a href="http://onbiostatistics.blogspot.com/2012/10/missingness-mechanism-mcar-mar-and-mnar.html">here</a> and <a href="https://statisticalhorizons.com/missing-at-random">here</a>. Weight can be a sensitive issue for some people, and as such they may choose not to disclose it. Luckily, this happens very infrequently in our dataset. For when it does happen, we must discard the data, but for an answer such as 'Not sure, 240' we can extract the number from the response.</p>
-<p>In order to do this we can use <a href="http://www.rexegg.com/regex-quickstart.html#ref">Regex</a>, a way to pattern match on characters. If you are not very confident with your regex, feel free to <a href="https://regex101.com/">check it here</a>. We use the DataFrame replace method, which accepts a regex and replaces it with a desired string. Since our table has floats, we use the outer parentheses on (\d(.\d+)?) to indicate a group so we can capture that float (see here for more on capturing). Here, the first \d means to look for a digit and (.\d+)? takes into account any possible decimal values with the float (the ? indicates that it is an optional part.</p>
-<p>* means zero or more.
-[^0-9.] means anything <em>except</em> for 0-9 or a period. 
-Thus, [^0-9.]* attempts to match anything that isn't part of a float.</p>
+<h4 id="Missing-Data">Missing Data<a class="anchor-link" href="#Missing-Data">&#182;</a></h4><p>How do we handle such cases? This is an example of 'Missing Not at Random' (MNAR) data, in which the data itself has something to do with why it's missing. (You can learn more about missing data <a href="http://onbiostatistics.blogspot.com/2012/10/missingness-mechanism-mcar-mar-and-mnar.html">here</a> and <a href="https://statisticalhorizons.com/missing-at-random">here</a>). Weight can be a sensitive issue for some people, and as such they may choose not to disclose it. Luckily, this happens very infrequently in our dataset. When it does happen, we must discard the data, but for an answer such as 'Not sure, 240' we can extract the number from the response.</p>
+<p>In order to do this we can use <a href="http://www.rexegg.com/regex-quickstart.html#ref">Regex</a>, a way to pattern match on characters. If you are not very confident with your regex, feel free to <a href="https://regex101.com/">check it here</a>. We use the DataFrame replace method, which accepts a regex and replaces it with a desired string. Since our table has floats, we use the outer parentheses on (\d(.\d+)?) to indicate a grouping and capture that float. Here, the first \d means to look for a digit and (.\d+)? takes into account any possible decimal values with the float (the ? indicates that it is an optional part). The [^0-9.]* helps us match anything that isn't supposed to be part of a float (zero or more characters that aren't numbers or periods), which will be removed - the match will be replaced by just the float grouping.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[254]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^0-9\.]*(\d(\.\d+)?)[^0-9\.]*&#39;</span><span class="p">,</span> <span class="s1">&#39;\g&lt;1&gt;&#39;</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extracts floats from responses that are not entirely floats</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^0-9\.]*(\d(\.\d+)?)[^0-9\.]*&#39;</span><span class="p">,</span> <span class="s1">&#39;\g&lt;1&gt;&#39;</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -12720,7 +12724,7 @@ Thus, [^0-9.]* attempts to match anything that isn't part of a float.</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[254]:</div>
+<div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -12892,17 +12896,18 @@ Thus, [^0-9.]* attempts to match anything that isn't part of a float.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the index 3 entry now has 240 as the weight. However, we are still left with instances of all text, such as in index 2.
 We will use another regex to replace these with 'NaN' - not a number.
-The following regex [^0-9.]+ matches one or more non-numeric and non-period characters (not allowed characters in a numerical response).</p>
+The following regex [^0-9.]+ matches one or more characters that aren't numbers or periods (which would not be allowed characters in a numerical response).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[255]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^0-9\.]+&#39;</span><span class="p">,</span><span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># replaces non-numeric responses with NaN</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^0-9\.]+&#39;</span><span class="p">,</span><span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -12916,7 +12921,7 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[255]:</div>
+<div class="prompt output_prompt">Out[36]:</div>
 
 
 
@@ -13093,10 +13098,11 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[256]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove all NaNs</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13110,7 +13116,7 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[256]:</div>
+<div class="prompt output_prompt">Out[37]:</div>
 
 
 
@@ -13280,17 +13286,18 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Self_perception_weight asks respondent to rank how they perceive themselves (1 - slim, 2 - very fit, 3 - just right, 4 - slightly overweight, 5 - overweight, 6 - I dont think of myself in these terms). Since we are trying to predict self_perception_weight, we would like to exclude option 6 as it is not within the continuum of values. To obtain the rows where self_perception_weight is not 6 and obtain a new dataframe, we run the following command:</p>
+<p>Recall that self_perception_weight asks respondent to rank how they perceive themselves (1 - slim, 2 - very fit, 3 - just right, 4 - slightly overweight, 5 - overweight, 6 - I dont think of myself in these terms). Since we are trying to predict self_perception_weight, we would like to exclude option 6 as it is not within the continuum of values. To obtain the rows where self_perception_weight is not 6 and obtain a new dataframe, we run the following command:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[257]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="p">[</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">]</span><span class="o">!=</span><span class="mi">6</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># only keep data where people responded with their perception</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="p">[</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">]</span><span class="o">!=</span><span class="mi">6</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -13302,17 +13309,18 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, we want to treat all of our data as numerical values. The DataFrame method apply will apply a function (in this case, pandas.to_numeric) to the entire dataframe.</p>
+<p>Finally, we want to make our data consistent. Some responses may be strings of numerics, which we do not want. The DataFrame method apply will apply a function (in this case, pandas.to_numeric) to the entire dataframe.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># make the data consistent in that they are all numeric responses</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13326,7 +13334,7 @@ The following regex [^0-9.]+ matches one or more non-numeric and non-period char
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[258]:</div>
+<div class="prompt output_prompt">Out[39]:</div>
 
 
 
@@ -13512,15 +13520,19 @@ Let's try making a scatter plot for grade_level and weight perception.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[259]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># prepare a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># set the labels</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Perception of Weight Based on Year in College&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Year in College&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Perception of Weight&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
+<span class="c1"># plot the points</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;grade_level&#39;</span><span class="p">],</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -13873,10 +13885,11 @@ firtMnz309pyjrbAljTLXMmWJEmSeuYdHyVJkqSeWWRLkiRJPbPIliRJknpmkS1JkiT1zCJbkiRJ
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[260]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;grade_level&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this creates a violin plot with the desired data and labels</span>
+<span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;grade_level&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
     <span class="n">geom_violin</span><span class="p">()</span> <span class="o">+</span>\
     <span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Perception of Weight Based on Year in College&quot;</span><span class="p">,</span>
          <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Year In College&quot;</span><span class="p">,</span>
@@ -14571,13 +14584,13 @@ iXAAADgmwgEA4JgIBwCAYw94aAuAJ3bxSAAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[260]:</div>
+<div class="prompt output_prompt">Out[41]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259418958518)&gt;</pre>
+<pre>&lt;ggplot: (-9223363260305344168)&gt;</pre>
 </div>
 
 </div>
@@ -14598,7 +14611,7 @@ iXAAADgmwgEA4JgIBwCAYw94aAuAJ3bxSAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
@@ -15307,13 +15320,13 @@ EWUYm3AiIiIiogxjE05ERERElGH/AFAYmFFsr9RcAAAAAElFTkSuQmCC
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[261]:</div>
+<div class="prompt output_prompt">Out[42]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259419027768)&gt;</pre>
+<pre>&lt;ggplot: (8776549563512)&gt;</pre>
 </div>
 
 </div>
@@ -15326,15 +15339,15 @@ EWUYm3AiIiIiogxjE05ERERElGH/AFAYmFFsr9RcAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we see what appears to be a linear increasing trend, which would make logical sense. The distributions for each perception rank vary; we see that the weights for a rank of 1 are fairly concentrated while the weights for a rank of 4 have a greater spread with some skew.</p>
-<p>Since we noticed a linear increasing trend, let's explore linear regression. It is another way we can observe a correlation between variables. Read more about linear regression <a href="http://www.mit.edu/~6.s085/notes/lecture3.pdf">here</a>.</p>
+<p>Here, we see what appears to be a linear increasing trend where actual weight increases as perceived weight increases, which would make logical sense. The distributions for each perception rank vary; we see that the weights for a rank of 1 are fairly concentrated while the weights for a rank of 4 have a greater spread with some skew.</p>
+<h4 id="Linear-Regression">Linear Regression<a class="anchor-link" href="#Linear-Regression">&#182;</a></h4><p>Since we noticed a linear increasing trend, let's explore linear regression. It is another way we can observe a correlation between variables. Read more about linear regression <a href="http://www.mit.edu/~6.s085/notes/lecture3.pdf">here</a>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[262]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -15342,11 +15355,14 @@ EWUYm3AiIiIiogxjE05ERERElGH/AFAYmFFsr9RcAAAAAElFTkSuQmCC
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Perceived Weight&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Actual Weight&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">],</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span>
+
+<span class="c1"># we fit to a linear regression model</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">intercept_</span>
 
+<span class="c1"># and then plot a line of best fit</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">],</span><span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -15704,6 +15720,14 @@ gj3JAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="More-Exploration-and-Visualization">More Exploration and Visualization<a class="anchor-link" href="#More-Exploration-and-Visualization">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We will take a look at how the frequency of cooking affects weight perception. Respondents were asked how often they cooked a week and provided the choices of 1 - Every day, 2 - A couple of times a week, 3 - Whenever I can, but that is not very often, 4 - I only help a little during holidays, 5 - Never, I really do not know my way around a kitchen. We create a violin plot.</p>
 
 </div>
@@ -15711,7 +15735,7 @@ gj3JAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[263]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;cook&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
@@ -16475,13 +16499,13 @@ zhhjjDHG2DzjJpwxxhhjjLF5xk04Y4wxxhhj8+x/NJkFIFchjEgAAAAASUVORK5CYII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[263]:</div>
+<div class="prompt output_prompt">Out[44]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259417898843)&gt;</pre>
+<pre>&lt;ggplot: (8776549366974)&gt;</pre>
 </div>
 
 </div>
@@ -16494,7 +16518,7 @@ zhhjjDHG2DzjJpwxxhhjjLF5xk04Y4wxxhhj8+x/NJkFIFchjEgAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In general, it seems that there is a linear trend, where the less they cooked meant they were more likely to perceive themselves as overweight.</p>
+<p>In general, it seems that there is a linear trend, where the less they cooked, they were more likely to perceive themselves as overweight.</p>
 
 </div>
 </div>
@@ -16510,7 +16534,7 @@ zhhjjDHG2DzjJpwxxhhjjLF5xk04Y4wxxhhj8+x/NJkFIFchjEgAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[264]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
@@ -17190,13 +17214,13 @@ AjPCJUmSpMB+AV53lrZRI83gAAAAAElFTkSuQmCC
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[264]:</div>
+<div class="prompt output_prompt">Out[45]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (8777435765831)&gt;</pre>
+<pre>&lt;ggplot: (-9223363260305453929)&gt;</pre>
 </div>
 
 </div>
@@ -17209,16 +17233,8 @@ AjPCJUmSpMB+AV53lrZRI83gAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In general, it seems that there is a linear trend, where less exercise per week meant they were more likely to perceive themselves as overweight.</p>
+<p>In general, it seems that there is a linear trend, where the less they exercised per week, the more likely they were to perceive themselves as overweight.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="MAR-MNAR-MCAR-data?-exercise---4-5">MAR MNAR MCAR data? exercise - 4 5<a class="anchor-link" href="#MAR-MNAR-MCAR-data?-exercise---4-5">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -17227,14 +17243,14 @@ AjPCJUmSpMB+AV53lrZRI83gAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we will take a look at how the frequency of checking nutritional values affects weight perception. Respondents were asked how often they check nutritional values and provided the choices of 1 - never
-2 - on certain products only, 3 - very rarely, 4 - on most products, 5 - on everything.</p>
+2 - on certain products only, 3 - very rarely, 4 - on most products, 5 - on everything. We create a violin plot.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[265]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;nutritional_check&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
@@ -17972,13 +17988,13 @@ opCRkcHevXs3Oh0hxG9CpqMIIYQQQgixzmQkXAghhBBCiHUmRbgQQgghhBDrTIpwIYQQQggh1pkU
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[265]:</div>
+<div class="prompt output_prompt">Out[46]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259419208581)&gt;</pre>
+<pre>&lt;ggplot: (-9223363260305579916)&gt;</pre>
 </div>
 
 </div>
@@ -18000,686 +18016,6 @@ opCRkcHevXs3Oh0hxG9CpqMIIYQQQgixzmQkXAghhBBCiHUmRbgQQgghhBDrTIpwIYQQQggh1pkU
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, we will take a look at how the living situation affects weight perception. Respondents were asked about their living situation and provided the choices of 1 - On campus, 2 - Rent out of campus, 3 - Live with my parents and commute, 4 - Own my own house. We create a violin plot.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[266]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;on_off_campus&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
-    <span class="n">geom_violin</span><span class="p">()</span> <span class="o">+</span>\
-    <span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Perception of Weight Based on Living Situation&quot;</span><span class="p">,</span>
-         <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Living Situation&quot;</span><span class="p">,</span>
-         <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Perception of Weight&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuEAAAIhCAYAAADgqGQmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl0U2XiPvAnTdrSPd132kJLS1tbkH2tKKBCwQUFxVFA
-QFCUGUd/44LzVefrzBkZHZczOjhugMMuyEABB4WKFKqyDhQotIXuW7pRuqVpc39/8G2G0gJp2uTN
-TZ7POZ7TJjf3Pr15i09v7n2vQpIkCUREREREZDEOogMQEREREdkblnAiIiIiIgtjCSciIiIisjCW
-cCIiIiIiC2MJJyIiIiKyMJZwIiIiIiILYwknoj5RWFgId3d3tLe3W3S7FRUVmDhxIjw8PPDCCy+Y
-dVvr1q3D1KlTjVp29erVGD9+vFnzWII1/Bz33nsv1qxZc8vlDh48iNjYWAskErtdUT8nEfUtlnAi
-KxQZGQkXFxe4u7sjMDAQ8+fPR0NDg+hYnURGRuL77783fN+/f380NDRAqVRaNMc//vEP+Pn5ob6+
-Hu+++26n5zIzM+Hh4dHpD4PFixd3+9jSpUtvua3HHnsMe/fu7ZPcd9xxBz777LMbPp+fnw+FQgF3
-d3fDOHjmmWeg0+n6ZPvW5mZlf8+ePZg3b94t1zFhwgScP3++r6MBAM6cOYOpU6fCx8cHarUaw4YN
-w+7du7vd7vW/G72lUCiQm5tr+N6cPycRWQ5LOJGV2rlzJxoaGnD8+HEcPXoUb731Vo/X0dbWZoZk
-1qWgoADx8fFQKBRdnhs+fDj0ej2OHz9ueOzgwYMICwvr9NiPP/6IiRMnWiRvT9XV1aGhoQGnT59G
-ZmYmPvroI9GR7NKMGTMwZcoUlJeXo7KyEh9++CE8PT1FxyIiGWMJJ7JyoaGhuPfee5GVlQUAuHz5
-MhYuXIjg4GCEhobitddeMxzVXb16NcaNG4fnn38evr6+eOONNwAAn376KQYPHgwPDw/Ex8cbCmhp
-aSlmzZoFf39/REVF4cMPPzRs94033sBDDz2EOXPmwMPDA7fffjv+85//AAAef/xxFBYWYsaMGXB3
-d8fKlSsNR247in9paSlmzpwJHx8fREdH49NPP+207tmzZ+OJJ56Ah4cHEhIScPTo0Rvug8OHD2PE
-iBHw8vLCiBEjcPjwYQDA/PnzsWbNGqxcuRLu7u5djj46Ojpi9OjR+PHHHwEAlZWVaG1txezZszs9
-duHCBUMJv9X+vfZo7d69exEbGwsvLy8888wzSElJ6XJ0+8UXX4S3tzeioqKwZ88eAMCKFStw8OBB
-PPvss3B3d8ezzz57kxFwVUBAAKZMmYKzZ88aHvvzn/+MgQMHGt7Xb775xvBcbm4uUlJS4OXlBT8/
-P8yZM8fwXHZ2NqZMmQIfHx/ExsZi8+bNhueqq6sxc+ZMeHp6YuTIkcjLy7tprh07diAhIQFqtRp3
-3HEHzp07Z3guMjIS77zzDpKSkuDl5YU5c+agpaXllj/r9To+NdBqtVCr1YbfBQDQaDRwcXFBZWUl
-fvjhB4SFhRm9/ZUrVyI4OBghISH47LPPuhxx7lBVVYVLly5h8eLFcHJygpOTE8aNG2cYC9dut7vf
-jetzdWTrGK+//PILxowZA7VajeDgYDz77LNobW0FAMO4TE5Ohru7OzZt2tRlfefOncMdd9wBtVqN
-hIQE7Nixw/Dc/PnzsWzZMkyfPh0eHh4YNWrULd9TIrIQiYisTkREhPTdd99JkiRJhYWFUnx8vPTa
-a69JkiRJ999/v/TUU09JDQ0NUkVFhTRixAhp1apVkiRJ0pdffikplUrpww8/lHQ6ndTU1CRt3rxZ
-CgkJkX755RdJr9dLOTk5Un5+vtTe3i7dfvvt0ptvvilptVopLy9PioqKkr799ltJkiTp9ddfl1Qq
-lbRlyxaptbVV+stf/iJFRkZKra2tXTJKkiRdunRJAiDpdDpJkiRpwoQJ0tNPPy01NzdLJ06ckPz8
-/KR9+/YZ1u3s7Czt2rVLamtrk15++WVp1KhR3e6L6upqSa1WS2vXrpV0Op20fv16Sa1WS1VVVZIk
-SdK8efOkFStW3HBfvvHGG9LMmTMlSZKkLVu2SI8//ri0d+/eTo9FRUUZlr/V/h03bpwkSZKk0Wgk
-Dw8PaevWrZJOp5Pef/99SaVSSZ9++qlhWZVKJf3jH/+Q2trapI8//lgKDg6W9Hq9JEmSlJKSYli2
-O9fvz5KSEikpKUn6/PPPDcts3rxZKikpkdrb26WNGzdKrq6uUmlpqSRJkvTII49Ib731ltTe3i41
-NzdLBw8elCRJkhoaGqSwsDDpiy++kHQ6nXT8+HHJ19dXOnPmjCRJkjRnzhzp4YcflhoaGqTTp09L
-ISEhhp/5eufPn5dcXV2lvXv3Sq2trdLbb78tDRw4UNJqtZIkXR0jI0aMkEpKSqTq6mopLi5O+vvf
-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
-iMjCeCSciIiIiMjCWMKJiIiIiCyMJZyIiIiIyMJYwomIiIiILIwlnIiIiIjIwljCiYiIiIgsjCWc
-iIiIiMjCWMKJiIiIiCyMJZyIiIiIyMJYwomIiIiILIwlnIiIiIjIwljCiYiIiIgsjCWciIiIiMjC
-WMKJiIiIiCyMJZyIiIiIyMJYwomIiIiILIwlnIiIiIjIwljCiYiIiIgsjCWciIiIiMjCWMKJiIiI
-iCyMJZyIiIiIyMJYwomIiIiILIwlnIiIiIjIwljCiYiIiIgsjCWciIiIiMjCWMKJiIiIiCyMJZyI
-iIiIyMJYwomIiIiILIwlnIiIiIjIwljCiYiIiIgsjCWciIiIiMjCWMKJiIiIiCyMJZyIiIiIyMJY
-womIiIiILIwlnIiIiIjIwljCiYiIiIgsTCU6gByUlpaKjmA1HB0d4e/vD41GA51OJzqOLDk7O0Or
-1YqOITsce73HsWc6jr/e4dgzHcdeVyEhIaIj9AkeCSeyMAcH/tqRGBx7JArHHlFX/K0gIiIiIrIw
-lnAiIiIiIgtjCSciIiIisjCWcCIiIiIiC2MJJyIiIiKyMJZwIiIiIiILYwknIiIiIrIwlnAiIiIi
-IgtjCSciIiIisjCWcCIiIiIiC2MJJyIiIiKyMJZwIiIiIiILYwknIiIiIrIwlnAiIiIiIgtTiQ7Q
-V7788ksUFxfDweHq3xWenp547rnnul02MzMTGRkZ0Ol0iI+PR2pqKlQqm9kVRERERGTlbKp5Tps2
-DcOGDbvpMrm5ucjIyMC8efPg4eGBjRs3Ij09HVOmTLFQSiIiIiKydzZVwo1x8uRJDB06FAEBAQCA
-lJQUbN261VDC6+vr0dDQ0Ok1ra2tcHNzs3hWa9TxiQE/OTCdUqmEo6Oj6Biyw7HXexx7puP46x2O
-PdNx7Nkum3pH9+3bh++//x5+fn648847ERUV1WUZjUaDuLg4w/dBQUFobGxEU1MTXF1dcezYMRw4
-cKDTa1JSUjBp0iSz57c2H374ITQajdHLjx07Fvfee68ZExEB3t7eoiOQHeP4I1E49myPzZTwKVOm
-wN/fH0qlEllZWdiwYQOWLl0KHx+fTsu1trbC2dnZ8H3H11qtFq6urhg2bBhiY2O7vKYnZdQW6PV6
-/OY3v8Gbb75p1PI5OTnIzMzE8OHDzZxM/pydnaHVakXHkB2VSgVvb2/U1taira1NdBxZ4tgzHcdf
-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
-AABJRU5ErkJggg==
-"
->
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[266]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259419195041)&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we will take a look at how the likeliness to eat veggies daily affects weight perception. 
 Respondents were asked how likely they were to eat veggies in a day provided the choices of 1 - very unlikely, 2 - unlikely, 3 - neutral, 4- likely, 5 - very likely. We create a violin plot.</p>
 
@@ -18688,7 +18024,7 @@ Respondents were asked how likely they were to eat veggies in a day provided the
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[267]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;veggies_day&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">food</span><span class="p">)</span> <span class="o">+</span>\
@@ -19450,13 +18786,13 @@ QmCC
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[267]:</div>
+<div class="prompt output_prompt">Out[47]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;ggplot: (-9223363259417915027)&gt;</pre>
+<pre>&lt;ggplot: (-9223363260305142766)&gt;</pre>
 </div>
 
 </div>
@@ -19469,7 +18805,7 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In general, it seems that there is a linear trend, where less likely to eat veggies meant they were more likely to perceive themselves as overweight.</p>
+<p>In general, it seems that there is a linear trend, where the less likely they were to eat veggies in a day, the more likely they were to perceive themselves as overweight.</p>
 
 </div>
 </div>
@@ -19486,7 +18822,7 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ultimately, our goal is to take the data we have, and see if we can use our data to accurately predict what one's perception of their weight is. In order to do this, we will experiment with several models from sci-kit learn. The models will we will try are: Decision Trees, Random Forests, Support Vector Machines, K-Nearest Neighbors, and Logistic Regression.</p>
+<p>We could continue on with these visualizations, but ultimately, our goal is to take the data we have, and see if we can use our data to accurately predict what one's perception of their weight is. In order to do this, we will experiment with several models from sci-kit learn. The models will we will try are: Decision Trees, Random Forests, Support Vector Machines, K-Nearest Neighbors, and Logistic Regression.</p>
 <p>Before we get started, we need to do one last preparation step to our data. Much of our data is in numerical form, when the responses they represent are truly categoric. For example, "Gender" responses are 1 or 2 for Male or Female, but why should one get a higher number over the other? To remedy this, we will use one-hot encoding, which will take the current data and convert it into essentially cateogircal classes, using binary features to represent the options in each class. For example, a variable such as Gender, which has responses of 1 and 2 will be split into 2 columns: Gender_1 and Gender_2, which will be populated with 0 or 1, depending on what the response was. The benefit of one-hot encoding is that it removes any inherent ordering of values, which will make classification easier. Read more about one-hot encoding <a href="https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f">here</a>.</p>
 <p>Below, we will apply one-hot encoding on all features except weight and self_perception_weight (the class we aim to predict).</p>
 
@@ -19503,10 +18839,11 @@ QmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[268]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">food</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">food</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># apply one-hot encoding to the dataset</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">food</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span>
 <span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -19520,7 +18857,7 @@ QmCC
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[268]:</div>
+<div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -19706,14 +19043,18 @@ QmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[269]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">food</span><span class="p">[</span><span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># all but the first column are features</span>
+<span class="c1"># the first column is the class we aim to predict</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">food</span><span class="p">[</span><span class="n">food</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">food</span><span class="p">[</span><span class="s1">&#39;self_perception_weight&#39;</span><span class="p">]</span>
 
+<span class="c1"># split the data into training and testing data</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
+<span class="c1"># this will be used to keep track of our accuracies for each classifier</span>
 <span class="n">accuracies</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 
@@ -19741,12 +19082,14 @@ QmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[270]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt_clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fit to a decision tree classifer</span>
+<span class="n">dt_clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">dt_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 
+<span class="c1"># obtain the accuracy with the score method and store into our dictionary</span>
 <span class="n">acc</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt_clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
 <span class="n">accuracies</span><span class="p">[</span><span class="s2">&quot;Decision Tree&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span>
@@ -19766,7 +19109,7 @@ QmCC
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy: 63.16%
+<pre>Accuracy: 47.37%
 </pre>
 </div>
 </div>
@@ -19786,10 +19129,10 @@ QmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[271]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictions: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictions: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True classes: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_test</span><span class="p">)))</span>
 </pre></div>
 
@@ -19807,7 +19150,7 @@ QmCC
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predictions: [ 2.  2.  3.  4.  3.  3.  3.  3.  3.  2.  3.  3.  3.  3.  3.  3.  3.  3.
+<pre>Predictions: [ 2.  4.  3.  4.  3.  3.  2.  3.  2.  3.  3.  4.  4.  3.  1.  3.  3.  1.
   3.]
 True classes: [ 2.  2.  3.  3.  3.  3.  3.  3.  2.  3.  3.  3.  2.  2.  2.  2.  4.  3.
   3.]
@@ -19838,7 +19181,7 @@ True classes: [ 2.  2.  3.  3.  3.  3.  3.  3.  2.  3.  3.  3.  2.  2.  2.  2.  
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[272]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf_clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -19863,7 +19206,7 @@ True classes: [ 2.  2.  3.  3.  3.  3.  3.  3.  2.  3.  3.  3.  2.  2.  2.  2.  
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy: 63.16%
+<pre>Accuracy: 57.89%
 </pre>
 </div>
 </div>
@@ -19891,7 +19234,7 @@ True classes: [ 2.  2.  3.  3.  3.  3.  3.  3.  2.  3.  3.  3.  2.  2.  2.  2.  
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[273]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">svm_clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
@@ -19944,7 +19287,7 @@ True classes: [ 2.  2.  3.  3.  3.  3.  3.  3.  2.  3.  3.  3.  2.  2.  2.  2.  
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[274]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;brute&#39;</span><span class="p">)</span>
@@ -19999,7 +19342,7 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[275]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
@@ -20052,10 +19395,12 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[276]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_rankings</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Classifier&#39;</span><span class="p">,</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create a new DataFrame for the rankings</span>
+<span class="c1"># we sort by Accuracy descending, so we see which have the highest accuracies</span>
+<span class="n">model_rankings</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Classifier&#39;</span><span class="p">,</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">accuracies</span><span class="p">:</span>
     <span class="n">model_rankings</span> <span class="o">=</span> <span class="n">model_rankings</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Classifier&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">accuracies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)},</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">model_rankings</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -20071,7 +19416,7 @@ For more information on logistic regression, see the <a href="http://www.dummies
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[276]:</div>
+<div class="prompt output_prompt">Out[56]:</div>
 
 
 
@@ -20087,19 +19432,14 @@ For more information on logistic regression, see the <a href="http://www.dummies
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Decision Tree</td>
+      <th>3</th>
+      <td>K-Nearest Neighbors</td>
       <td>63.16</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Random Forest</td>
-      <td>63.16</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>K-Nearest Neighbors</td>
-      <td>63.16</td>
+      <td>57.89</td>
     </tr>
     <tr>
       <th>4</th>
@@ -20110,6 +19450,11 @@ For more information on logistic regression, see the <a href="http://www.dummies
       <th>2</th>
       <td>Support Vector Machine</td>
       <td>52.63</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Decision Tree</td>
+      <td>47.37</td>
     </tr>
   </tbody>
 </table>
@@ -20143,10 +19488,11 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[277]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># attempt to do cross evaluation, which our data is not suited for</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 
@@ -20214,10 +19560,12 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[278]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">,</span><span class="s1">&#39;Importance&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># creat a new DataFrame to see which features are most important</span>
+<span class="c1"># we sort by Importance descending to see which are most important</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Feature&#39;</span><span class="p">,</span><span class="s1">&#39;Importance&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
     <span class="n">importances</span> <span class="o">=</span> <span class="n">importances</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">rf_clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">i</span><span class="p">]},</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -20233,7 +19581,7 @@ For more information on logistic regression, see the <a href="http://www.dummies
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[278]:</div>
+<div class="prompt output_prompt">Out[58]:</div>
 
 
 
@@ -20251,102 +19599,102 @@ For more information on logistic regression, see the <a href="http://www.dummies
     <tr>
       <th>0</th>
       <td>weight</td>
-      <td>0.083405</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>calories_day_3.0</td>
-      <td>0.061393</td>
+      <td>0.115923</td>
     </tr>
     <tr>
       <th>62</th>
       <td>healthy_feeling_9</td>
-      <td>0.042806</td>
+      <td>0.065791</td>
     </tr>
     <tr>
-      <th>43</th>
-      <td>exercise_1.0</td>
-      <td>0.030553</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>pay_meal_out_6</td>
-      <td>0.029368</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>pay_meal_out_4</td>
-      <td>0.028021</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>comfort_food_reasons_coded_2.0</td>
-      <td>0.025522</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>healthy_feeling_8</td>
-      <td>0.024757</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>comfort_food_reasons_coded_1.0</td>
-      <td>0.024654</td>
-    </tr>
-    <tr>
-      <th>73</th>
-      <td>life_rewarding_4.0</td>
-      <td>0.023315</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>nutritional_check_4</td>
-      <td>0.022766</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>fruit_day_3</td>
-      <td>0.022485</td>
+      <th>4</th>
+      <td>calories_day_3.0</td>
+      <td>0.040915</td>
     </tr>
     <tr>
       <th>102</th>
       <td>veggies_day_3</td>
-      <td>0.022308</td>
+      <td>0.027441</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>income_6.0</td>
-      <td>0.021937</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>eating_out_2</td>
-      <td>0.021881</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>income_3.0</td>
-      <td>0.021062</td>
+      <th>23</th>
+      <td>eating_changes_coded_2</td>
+      <td>0.027270</td>
     </tr>
     <tr>
       <th>52</th>
       <td>grade_level_3</td>
-      <td>0.020854</td>
+      <td>0.026159</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Gender_1</td>
-      <td>0.020721</td>
+      <th>105</th>
+      <td>vitamins_1</td>
+      <td>0.023299</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>grade_level_4</td>
+      <td>0.022006</td>
     </tr>
     <tr>
       <th>77</th>
       <td>life_rewarding_8.0</td>
-      <td>0.020695</td>
+      <td>0.021251</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Gender_2</td>
-      <td>0.020641</td>
+      <th>78</th>
+      <td>life_rewarding_9.0</td>
+      <td>0.021074</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>comfort_food_reasons_coded_2.0</td>
+      <td>0.020287</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>veggies_day_4</td>
+      <td>0.018484</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>parents_cook_1</td>
+      <td>0.017435</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Gender_1</td>
+      <td>0.017259</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>grade_level_1</td>
+      <td>0.016233</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>eating_out_2</td>
+      <td>0.015828</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>exercise_1.0</td>
+      <td>0.015741</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>income_6.0</td>
+      <td>0.015163</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>eating_changes_coded_3</td>
+      <td>0.014976</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>parents_cook_2</td>
+      <td>0.014479</td>
     </tr>
   </tbody>
 </table>
@@ -20363,7 +19711,7 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Because we had used one-hot encoding, we see that certain responses are of more importance, but at a glance, we see certain characteristics such as weight, Gender, income, cook, fruit_day, etc.</p>
+<p>Because we had used one-hot encoding, we see which values of features were more important, rather than the features themselves. For example, calories_day_3.0 means those who chose 3.0 for calories_day. We see that certain responses are of more importance, but at a glance, we see certain characteristics are high up on the list, which are those we want to collect about people to understand and predict how they may perceive their weight.</p>
 
 </div>
 </div>
@@ -20390,7 +19738,7 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Linked-Readings">Linked Readings<a class="anchor-link" href="#Linked-Readings">&#182;</a></h3>
+<h3 id="List-of-Linked-Readings">List of Linked Readings<a class="anchor-link" href="#List-of-Linked-Readings">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -20398,10 +19746,10 @@ For more information on logistic regression, see the <a href="http://www.dummies
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Weight disorders:
-<a href="https://www.ncbi.nlm.nih.gov/pubmed/20142281">https://www.ncbi.nlm.nih.gov/pubmed/20142281</a>
-<a href="https://www.ncbi.nlm.nih.gov/pubmed/12726871">https://www.ncbi.nlm.nih.gov/pubmed/12726871</a>
-<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/</a>
+<p>NIH Articles on Self-Perception of Weight and Body Image: <br>
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/20142281">https://www.ncbi.nlm.nih.gov/pubmed/20142281</a> <br>
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/12726871">https://www.ncbi.nlm.nih.gov/pubmed/12726871</a> <br>
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3005306/</a> <br>
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4554432/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4554432/</a></p>
 <p>Data:
 <a href="https://www.kaggle.com/borapajo/food-choices/data">https://www.kaggle.com/borapajo/food-choices/data</a></p>
@@ -20426,16 +19774,16 @@ Introduction <a href="http://www.rexegg.com/regex-quickstart.html#ref">http://ww
 Checker <a href="https://regex101.com/">https://regex101.com/</a></p>
 <p>Linear Regression: <br>
 <a href="http://www.mit.edu/~6.s085/notes/lecture3.pdf">http://www.mit.edu/~6.s085/notes/lecture3.pdf</a></p>
-<p>One Hot Encoding: 
+<p>One Hot Encoding: <br>
 <a href="https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f">https://hackernoon.com/what-is-one-hot-encoding-why-and-when-do-you-have-to-use-it-e3c6186d008f</a></p>
 <p>Decision Trees: <br>
 <a href="https://www-users.cs.umn.edu/~kumar001/dmbook/ch4.pdf">https://www-users.cs.umn.edu/~kumar001/dmbook/ch4.pdf</a> <br>
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</a></p>
 <p>Random Forests: <br>
-<a href="http://dataaspirant.com/2017/05/22/random-forest-algorithm-machine-learing/">http://dataaspirant.com/2017/05/22/random-forest-algorithm-machine-learing/</a>
+<a href="http://dataaspirant.com/2017/05/22/random-forest-algorithm-machine-learing/">http://dataaspirant.com/2017/05/22/random-forest-algorithm-machine-learing/</a> <br>
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</a></p>
 <p>Support Vector Machines: <br> 
-<a href="https://www.kdnuggets.com/2016/07/support-vector-machines-simple-explanation.html">https://www.kdnuggets.com/2016/07/support-vector-machines-simple-explanation.html</a>
+<a href="https://www.kdnuggets.com/2016/07/support-vector-machines-simple-explanation.html">https://www.kdnuggets.com/2016/07/support-vector-machines-simple-explanation.html</a> <br>
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html</a></p>
 <p>K Nearest Neighbors: <br> 
 <a href="https://www.analyticsvidhya.com/blog/2014/10/introduction-k-neighbours-algorithm-clustering/">https://www.analyticsvidhya.com/blog/2014/10/introduction-k-neighbours-algorithm-clustering/</a> <br>
